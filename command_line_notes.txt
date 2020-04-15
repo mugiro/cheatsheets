@@ -1,7 +1,4 @@
-
-
 Hotkey: ctrl + r    will do a "reverse search on all commands used before in the terminal.
-
 
 1. ls -l      -> This lists all files in the folder with their size and last day of modification
 

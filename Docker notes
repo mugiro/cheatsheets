@@ -1,27 +1,40 @@
 On terminal:
 
 docker ps -a   -> Will list all docker containers in computer. 
+docker images  -> this shows all docker images downloaded in computer 
+docker volume ls
+
 docker run <image name>  -> it will run the image name and create a containder with a random name from that image
 docker run --name <personal name of container> <image name>   -> Create new container with personal/custom name from image name
+docker run --name=bqcbackend -d -v /mnt:/mnt -p 5000:5000 bqcbackend:latest -> it will run the backend
 docker run -it --name <my-custom-name-container> <image name> bash  -> Go inside the container with bash after running docker container
+docker run -it -p 5000:5000 --rm --name bqcbackend bqcbackend -> it will run interactive backend 
 
-docker images  -> this shows all docker images downloaded in computer 
+To run the container (local):
+docker run --name=bqcbackend -it -v /Volumes/Extreme_500:/mnt -p 5000:5000 bqcbackend:latest
+OR
+docker run --name=bqcbackend -d -v /Volumes/Extreme_500:/mnt -p 5000:5000 bqcbackend:latest
 
+docker start -ia [CONTAINER] -> To restart the container in the same layer
+
+For removing:
 docker rm $(docker ps -a -f status=exited -q) -> delete all exited containers
+docker rmi <Image1> <Image2>
+docker rmi $(docker images -a -q)
+docker rm <ID_or_Name>
+docker stop $(docker ps -a -q)
+docker rm $(docker ps -a -q)
+docker volume rm <volume_name>
+docker volume prune
+
 
 To build a custom docker image, Create a file called Dockerfile:
 
 In Dockerfile:
-
 FROM ubuntu
 RUN apt-get upgrade && apt-get update && apt-get install -y python3
-
 Terminal:
 docker build -t my-cutom-image-name .  -> this will create an image from that Dockerfile
-
-
-
-
 
 mkdir DockerComposeFile -> create a new folder
 cd DockerComposeFile
@@ -29,4 +42,3 @@ cd DockerComposeFile
 touch docker-compose.yml -> creates the docker compose YAML file 
 
 vi docker-compose.yml -> This is to edit the yaml file 
-
